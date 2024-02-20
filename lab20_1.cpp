@@ -49,27 +49,34 @@ void getCommand(string &comm,string &keyy){
     keyy = kee;
 }
 
-void searchName(vector<string> name ,vector<int> score,vector<char> grade,string key){
-    int count = 0;
-    cout << "---------------------------------" << "\n";
-    for(int n = 0; n  < int(name.size()) ; n++){
-        if (toUpperStr(name.at(n)).compare(toUpperStr(key)) == 0){
-        cout << name.at(n) << "'s score = " << score.at(n) << "\n";  
-        cout << name.at(n) << "'s grade = " << grade.at(n) << "\n";
+void searchName(const vector<string>& names, const vector<int>& scores, const vector<char>& grades, const string& key){
+    cout << "---------------------------------\n";
+    for(unsigned int i=0;i<names.size();i++){
+        if(toUpperStr(key) == toUpperStr(names[i])){
+            cout << names[i] <<"'s" << " score = " << scores[i] <<"\n";
+            cout << names[i] <<"'s" << " grade = " << grades[i] <<"\n";
+            break;
         }
-        else count++;
+        else{
+            if(i == names.size()-1)
+            cout << "Cannot found." <<"\n";
+        }
     }
-    if(count == 26) cout << "Cannot found." << "\n";
-    cout << "---------------------------------" << "\n";
+    cout << "---------------------------------\n";
 }
-
-void searchGrade(vector<string> name ,vector<int> score,vector<char> grade,string key){
-    cout << "---------------------------------" << "\n";
-    for(int n = 0; n  < int(name.size()) ; n++)
-        if (grade.at(n) == (key[0])){
-           cout << name.at(n) << " (" << score.at(n) << ")" << "\n";
+void searchGrade(const vector<string>& names, const vector<int>& scores, const vector<char>& grades, const string& key) {
+    cout << "---------------------------------\n";
+    bool found = false;
+    for(unsigned int i = 0; i < names.size(); i++) {
+        if (key.c_str()[0] == grades[i]) {
+            cout << names[i] << " (" << scores[i] << ")\n";
+            found = true;
         }
-    cout << "---------------------------------" << "\n";
+    }
+    if (!found) {
+        cout << "Cannot found." <<"\n";
+    }
+    cout << "---------------------------------\n";
 }
 
 
